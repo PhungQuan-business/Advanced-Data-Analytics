@@ -13,7 +13,7 @@ from sklearn.ensemble import (
 )
 from sklearn.svm import SVC
 from sklearn.naive_bayes import GaussianNB
-from sklearn.metrics import accuracy_score, classification_report
+from sklearn.metrics import accuracy_score, classification_report, roc_auc_score
 from sklearn.neural_network import MLPClassifier
 from pgmpy.models import BayesianNetwork
 from pgmpy.estimators import BayesianEstimator
@@ -62,6 +62,7 @@ class TraditionalMLAlgorithms(MLAlgorithmBase):
         y_pred = model.predict(self.X_test)
 
         accuracy = accuracy_score(self.y_test, y_pred)
+        roc_auc = roc_auc_score(self.y_test, y_pred)
         report = classification_report(self.y_test, y_pred, zero_division=1)
 
         # return {
@@ -70,9 +71,10 @@ class TraditionalMLAlgorithms(MLAlgorithmBase):
         #     'accuracy': accuracy,
         #     'classification_report': report
         # }
-        return (
-            model,
-            y_pred,
-            accuracy,
-            report
-        )
+        return {
+            'model': model,
+            # y_pred,
+            'ROC AUC Score': roc_auc,
+            'Accuracy': accuracy,
+            'Classification Report': report
+        }
