@@ -1,7 +1,12 @@
 import numpy as np
 import pandas as pd
-from sklearn.datasets import load_iris
 from sklearn.model_selection import train_test_split
+from sklearn.metrics import (
+    accuracy_score,
+    classification_report,
+    roc_auc_score
+)
+from sklearn.svm import SVC
 from sklearn.preprocessing import StandardScaler
 from sklearn.linear_model import LogisticRegression
 from sklearn.tree import DecisionTreeClassifier
@@ -11,11 +16,8 @@ from sklearn.ensemble import (
     AdaBoostClassifier,
     VotingClassifier
 )
-from sklearn.svm import SVC
 from sklearn.naive_bayes import GaussianNB
-from sklearn.metrics import accuracy_score, classification_report, roc_auc_score
 from sklearn.neural_network import MLPClassifier
-from pgmpy.models import BayesianNetwork
 from pgmpy.estimators import BayesianEstimator
 from pgmpy.inference import VariableElimination
 from MLAlgorithmBase import MLAlgorithmBase
@@ -35,7 +37,7 @@ from MLAlgorithmBase import MLAlgorithmBase
 
 
 class EnsembleMethods(MLAlgorithmBase):
-    def fit_predict(self, algorithm_name):
+    def fit_predict(self, algorithm_name, base_estimator):
         """
         Select and apply ensemble methods (Bagging and Boosting).
 
@@ -50,7 +52,21 @@ class EnsembleMethods(MLAlgorithmBase):
             Results of the model including predictions, accuracy, and classification report
         """
         supported_algorithms = ['bagging', 'boosting', 'ensemble-voting']
+        supported_base_algorithms = [
+            'logistic_regression', 'decision_tree', 'random_forest',
+            'support_vector_machine', 'naive_bayes', 'artificial_neural_network'
+        ]
+
         algorithm = self._validate_input(algorithm_name, supported_algorithms)
+        base_models = self._validate_input(
+            base_estimator, supported_base_algorithms)
+
+        # TODO add iteration through list of alogirthms
+        # TODO modify the result printing
+
+        '''
+        Thêm vòng for để loop qua các base model
+        '''
 
         if algorithm == 'bagging':
             model = BaggingClassifier(
@@ -88,13 +104,6 @@ class EnsembleMethods(MLAlgorithmBase):
         accuracy = accuracy_score(self.y_test, y_pred)
         roc_auc = roc_auc_score(self.y_test, y_pred)
         report = classification_report(self.y_test, y_pred, zero_division=1)
-
-        # return {
-        #     'model': model,
-        #     'predictions': y_pred,
-        #     'accuracy': accuracy,
-        #     'classification_report': report
-        # }
         return {
             'model': model,
             # y_pred,
