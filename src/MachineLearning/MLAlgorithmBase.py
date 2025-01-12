@@ -78,3 +78,51 @@ class MLAlgorithmBase:
                 f"Invalid input type: {type(algorithm_names).__name__}. "
                 f"Expected a string or a list of strings."
             )
+
+
+class ModelParameters:
+    def __init__(self):
+        # Default parameters for each algorithm
+        self.default_params = {}
+
+    def get_params(self, algorithm_name, custom_params=None):
+        """
+        Get default parameters for a given algorithm and update with custom parameters.
+
+        Parameters:
+        -----------
+        algorithm_name : str
+            Name of the algorithm.
+        custom_params : dict, optional
+            Custom parameters to override defaults.
+
+        Returns:
+        --------
+        dict
+            Parameters for the algorithm.
+        """
+        if algorithm_name not in self.default_params:
+            raise ValueError(f"Unsupported algorithm: {algorithm_name}")
+
+        # Start with default parameters
+        params = self.default_params[algorithm_name].copy()
+
+        # Update with custom parameters if provided
+        if custom_params:
+            params.update(custom_params)
+
+        return params
+
+
+# Example usage
+if __name__ == '__main__':
+    params_manager = ModelParameters()
+
+    # Get default parameters for Random Forest
+    rf_params = params_manager.get_params("random_forest")
+    print("Default Random Forest Parameters:", rf_params)
+
+    # Modify parameters for Random Forest
+    custom_rf_params = params_manager.get_params(
+        "random_forest", {"n_estimators": 200, "max_depth": 10})
+    print("Custom Random Forest Parameters:", custom_rf_params)
