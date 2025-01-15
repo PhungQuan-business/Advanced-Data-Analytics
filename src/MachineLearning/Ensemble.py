@@ -181,12 +181,13 @@ class EnsembleMLAlgorithms(MLAlgorithmBase):
             'Classification Report': report
         }
 
+
 if __name__ == '__main__':
     import pprint as pprint
     from sklearn.datasets import load_iris
     data = load_iris()
     X, y = data.data, data.target
-    ensemble_ml = EnsembleMethods(X, y)
+    ensemble_ml = EnsembleMLAlgorithms(X, y)
     ensmeble_algorithms = ['bagging', 'boosting']
 
     # MLP will make AdaBoost result in error since it doesn't support sample_weight

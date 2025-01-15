@@ -63,7 +63,7 @@ class TraditionalMLAlgorithms(MLAlgorithmBase):
     def __init__(self, X, y, test_size=0.3, random_state=42):
         super().__init__(X, y, test_size, random_state)
 
-    def fit_predict(self, algorithm_name, custom_params=None):
+    def fit_predict(self, algorithm_name, base_estimator=None):
         """
         Select and apply traditional ML algorithms.
 
@@ -84,7 +84,7 @@ class TraditionalMLAlgorithms(MLAlgorithmBase):
         algorithm = self._validate_input(algorithm_name, supported_algorithms)
         get_trad_param = TraditionalModelParams()
         params = get_trad_param.get_params(
-            algorithm_name=algorithm, custom_params=custom_params)
+            algorithm_name=algorithm, custom_params=base_estimator)
 
         if algorithm == 'logistic_regression':
             model = LogisticRegression(**params)
