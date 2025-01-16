@@ -40,16 +40,15 @@ def _handle_class_imbalance(data):
 
 
 def pre_processing(data, pytorch=None):
-    import torch
-    data = _convert_format(data)
-    data = _normalization(data)
-    data = _handle_missing_value(data)
-    X_resampled, y_resampled = _handle_class_imbalance(data)
-    print('finished pre-processing data')
 
     if pytorch:
-        X_tensor = torch.tensor(X_resampled.values, dtype=torch.float32)
-        y_tensor = torch.tensor(y_resampled.values, dtype=torch.float32)
-        return X_tensor, y_tensor
-
-    return X_resampled, y_resampled
+        data = _convert_format(data)
+        data = _normalization(data)
+        return data
+    else:
+        data = _convert_format(data)
+        data = _normalization(data)
+        data = _handle_missing_value(data)
+        X_resampled, y_resampled = _handle_class_imbalance(data)
+        print('finished pre-processing data')
+        return X_resampled, y_resampled
