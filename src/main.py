@@ -1,11 +1,11 @@
 from pprint import pprint
 import pandas as pd
 
-from Traditional import TraditionalMLAlgorithms
-from Ensemble import EnsembleMLAlgorithms
-from PreProcessing import pre_processing
+from MachineLearning.Traditional import TraditionalMLAlgorithms
+from MachineLearning.Ensemble import EnsembleMLAlgorithms
+from MachineLearning.PreProcessing import pre_processing
 
-data_path = 'src/MachineLearning/Advanced-DA-Task-management.csv'
+data_path = 'MachineLearning/Advanced-DA-Task-management.csv'
 # data = load_iris()
 data = pd.read_csv(data_path)
 
@@ -29,14 +29,13 @@ X, y = pre_processing(data)
 # else:
 #     print("Traditional method is not enabled")
 
-all_algorithms = [
+all_ml_algorithms = [
     'logistic_regression', 'decision_tree', 'random_forest',
     'support_vector_machine', 'naive_bayes', 'artificial_neural_network',
     'bagging', 'boosting', 'ensemble-voting'
 ]
 
 if __name__ == "__main__":
-    # algorithm = 'logistic_regression'
     algorithm = 'logistic_regression'
     if algorithm in ['bagging', 'boosting', 'ensemble-voting']:
         base_estimator = 'logistic_regression'

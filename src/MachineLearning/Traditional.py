@@ -15,8 +15,8 @@ from sklearn.naive_bayes import GaussianNB
 from sklearn.neural_network import MLPClassifier
 from pgmpy.estimators import BayesianEstimator
 from pgmpy.inference import VariableElimination
-from MLAlgorithmBase import MLAlgorithmBase
-from MLAlgorithmBase import ModelParameters
+from MachineLearning.Base import MLAlgorithmBase
+from MachineLearning.Base import ModelParameters
 
 
 class TraditionalModelParams(ModelParameters):
@@ -131,4 +131,3 @@ if __name__ == '__main__':
         # print("Traditional ML Results:", result)
         pprint(result)
         pprint("#"*50)
-

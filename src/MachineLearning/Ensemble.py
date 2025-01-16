@@ -19,8 +19,8 @@ from sklearn.naive_bayes import GaussianNB
 from sklearn.neural_network import MLPClassifier
 from pgmpy.estimators import BayesianEstimator
 from pgmpy.inference import VariableElimination
-from MLAlgorithmBase import MLAlgorithmBase
-from MLAlgorithmBase import ModelParameters
+from MachineLearning.Base import MLAlgorithmBase
+from MachineLearning.Base import ModelParameters
 # # Optional imports for additional algorithms
 # try:
 #     import xgboost as xgb
