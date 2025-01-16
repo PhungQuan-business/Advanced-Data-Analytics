@@ -160,29 +160,29 @@ class FocalTverskyLoss(nn.Module):
         return FocalTversky
 
 
-class ComboLoss(nn.Module):
-    def __init__(self, weight=None, size_average=True):
-        super(ComboLoss, self).__init__()
+# class ComboLoss(nn.Module):
+#     def __init__(self, weight=None, size_average=True):
+#         super(ComboLoss, self).__init__()
 
-    def forward(self, inputs, targets, smooth=1, alpha=0.5, beta=0.5, eps=1e-9):
+#     def forward(self, inputs, targets, smooth=1, alpha=0.5, beta=0.5, eps=1e-9):
 
-        # flatten label and prediction tensors
-        # inputs = inputs.view(-1)
-        # targets = targets.view(-1)
+#         # flatten label and prediction tensors
+#         # inputs = inputs.view(-1)
+#         # targets = targets.view(-1)
 
-        if inputs.size(1) > 1:  # Multiclass case
-            targets = torch.nn.functional.one_hot(
-                targets, num_classes=inputs.size(1)).float()
+#         if inputs.size(1) > 1:  # Multiclass case
+#             targets = torch.nn.functional.one_hot(
+#                 targets, num_classes=inputs.size(1)).float()
 
-        # True Positives, False Positives & False Negatives
-        intersection = (inputs * targets).sum()
-        dice = (2. * intersection + smooth) / \
-            (inputs.sum() + targets.sum() + smooth)
+#         # True Positives, False Positives & False Negatives
+#         intersection = (inputs * targets).sum()
+#         dice = (2. * intersection + smooth) / \
+#             (inputs.sum() + targets.sum() + smooth)
 
-        inputs = torch.clamp(inputs, eps, 1.0 - eps)
-        out = - (ALPHA * ((targets * torch.log(inputs)) +
-                 ((1 - ALPHA) * (1.0 - targets) * torch.log(1.0 - inputs))))
-        weighted_ce = out.mean(-1)
-        combo = (CE_RATIO * weighted_ce) - ((1 - CE_RATIO) * dice)
+#         inputs = torch.clamp(inputs, eps, 1.0 - eps)
+#         out = - (0.5 * ((targets * torch.log(inputs)) +
+#                  ((1 - 0.5) * (1.0 - targets) * torch.log(1.0 - inputs))))
+#         weighted_ce = out.mean(-1)
+#         combo = (0.5 * weighted_ce) - ((1 - 0.5) * dice)
 
-        return combo
+#         return combo

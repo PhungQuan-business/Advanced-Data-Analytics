@@ -1,3 +1,6 @@
 *.pyc
 *.pyo
 __pycache__/
+lightning_logs/
+saved_models/
+.pt_tmp/

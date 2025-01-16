@@ -44,6 +44,7 @@ def pre_processing(data, pytorch=None):
     if pytorch:
         data = _convert_format(data)
         data = _normalization(data)
+        data = -_handle_missing_value(data)
         return data
     else:
         data = _convert_format(data)
