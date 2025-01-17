@@ -1,0 +1,30 @@
+# Ignore Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Ignore Jupyter notebook checkpoints
+.ipynb_checkpoints/
+
+# Ignore IDE/editor configurations
+.vscode/
+*.swp
+*.swo
+*.idea/
+
+# Ignore environment files
+environment.yml
+
+# Ignore datasets
+Advanced-DA-Task-management.csv
+
+# Ignore model checkpoints and logs
+src/saved_models/
+src/lightning_logs/
+
+# Ignore images (not needed for running the app)
+images/
+
+# Ignore Docker ignore and requirements file
+requirements.txt

@@ -1,8 +1,0 @@
-scikit-learn
-imblearn
-pandas
-numpy
-pgmpy
-pytorch_tabular[extra]
-pytorch_tabular
-streamlit

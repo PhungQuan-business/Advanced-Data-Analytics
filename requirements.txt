@@ -1,0 +1,7 @@
+scikit-learn==1.5.2
+imbalanced-learn==0.10.1
+pandas==2.2.3
+numpy==1.26.4
+pgmpy==0.1.26
+pytorch_tabular==1.1.1
+streamlit==1.40.1

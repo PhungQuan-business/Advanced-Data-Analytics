@@ -27,9 +27,66 @@ The Project objective is to classify whether the company end-of-year financial s
 
 ## Research method
 in progress
+In this project we compare the performance of traditional ML algorithm with Deep Learning model which specialize for tabular data.
+We devided into 3 types methods: Traditional model, Ensemble model, Deep Learning model.
+| **Traditional**           | **Ensemble**      | **Deep Learning**  |
+|---------------------------|-------------------|--------------------|
+| Logistic Regression       | Bagging           | NODE               |
+| Decision Tree             | Boosting          | TabNet             |
+| Random Forest             | Ensemble Voting   | AutoInt            |
+| Support Vector Machine    |                   | TabTransformer     |
+| Naive Bayes               |                   | GATE               |
+| Artificial Neural Network |                   | GANDAF             |
+|                           |                   | DANETs             |
+
+In addition for each Deep Learning model, we experiment with 6 type of Loss Function:
+* DiceLoss
+* BCEDiceLoss
+* IoULoss
+* FocalLoss
+* TverskyLoss
+* FocalTverskyLoss
+
+We then compare the performance of these model using: Accuracy, Precision, Recall, F1, AUC.
 
 ## Result evaluation
-in progress
+![alt text](images/ml-result.png)
+
+![alt text](images/dl-result.png)
+
+## Steps to run code
+
+### Build from the source
+Clone the repo
+```sh
+git clone https://github.com/PhungQuan-business/Advanced-Data-Analytics.git
+```
+
+Create the environment using Anaconda
+```sh
+conda env create -f environment.yml
+```
+
+Activate the conda environment
+```sh
+conda activate financial-restatement
+```
+
+Move to the source code
+```
+cd /src
+```
+
+Start Streamlit app
+```sh
+streamlit run app.py
+```
+
+### Build using Docker
+pull the image
+```sh
+docker pull 
+```
 
 ## Contributor
 Vũ Thu Huyền - 21070237 \
