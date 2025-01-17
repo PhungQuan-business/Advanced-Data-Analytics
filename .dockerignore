@@ -26,5 +26,3 @@ src/lightning_logs/
 # Ignore images (not needed for running the app)
 images/
 
-# Ignore Docker ignore and requirements file
-requirements.txt
